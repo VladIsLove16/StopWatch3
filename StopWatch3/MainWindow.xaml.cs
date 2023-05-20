@@ -10,13 +10,16 @@ using System.Windows.Threading;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Timers;
-
+using LiveCharts;
+using LiveCharts.Configurations;
 namespace StopwatchApp
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private ObservableCollection<StopwatchItem> stopwatches;
         private DispatcherTimer timer = new DispatcherTimer();
+        DateTime selectedDate=new DateTime();
+
         //событие СВОЙСТВО ИЗМЕНЕНО
         public event PropertyChangedEventHandler PropertyChanged;
 //Массива Секундомеров
@@ -35,9 +38,14 @@ namespace StopwatchApp
             InitializeComponent();
             DataContext = this;
 /* Массив*/ Stopwatches = new ObservableCollection<StopwatchItem>();
+            StopwatchItem stopwatch = new StopwatchItem("First");
+            Stopwatches.Add(stopwatch);
+            stopwatchList.ItemsSource = stopwatches;
             timer.Interval = TimeSpan.FromMilliseconds(50);
             timer.Tick += Timer_Tick;
             timer.Start();
+            selectedDate = DateTime.Today;
+            DateTextBlock.Text = selectedDate.ToString();
         }
 //По клику кнопки Добавить
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -70,8 +78,13 @@ namespace StopwatchApp
                 stopwatch.UpdateElapsedTime();
             }
         }
+
+        private void PieChart_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
-//Интерфейс модели
+    //Интерфейс модели
     public class StopwatchItem : INotifyPropertyChanged
     {
         private string name;

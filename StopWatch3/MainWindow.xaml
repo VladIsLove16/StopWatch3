@@ -3,31 +3,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:sys="clr-namespace:System;assembly=mscorlib" 
         xmlns:converters="clr-namespace:StopwatchApp"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+
         Title="Stopwatch App" Height="450" Width="300">
-   
-    <Grid>
-       
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <TabControl>
+        <TabItem Header="Вкладка 1">
+            <Grid>
 
-        <ListBox x:Name="stopwatchList" ItemsSource="{Binding stopwatches}" Grid.Row="0">
-            <ListBox.ItemTemplate>  
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Width="100"/>
-                        <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss\\.f}'}" Width="100"/>
-                        <Button Content="Start" Click="StartButton_Click"/>
-                        <Button Content="Stop" Click="StopButton_Click"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBox x:Name="nameTextBox" Width="100" Margin="5"/>
-            <Button Content="Add Stopwatch" Click="AddButton_Click"/>
-        </StackPanel>
-    </Grid>
+                <ListBox x:Name="stopwatchList" ItemsSource="{Binding stopwatches}" Grid.Row="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Width="100"/>
+                                <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss\\.f}'}" Width="100"/>
+                                <Button Content="Start" Click="StartButton_Click"/>
+                                <Button Content="Stop" Click="StopButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+               
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBox x:Name="nameTextBox" Width="100" Margin="5"/>
+                    <Button Content="Add Stopwatch" Click="AddButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Вкладка 2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition x:Name="boom" Height="100"/>
+                </Grid.RowDefinitions>
+                <lvc:PieChart Grid.Row="1" LegendLocation="Bottom" RenderTransformOrigin="0.464,0.596" Loaded="PieChart_Loaded">
+                    <lvc:PieChart.Series>
+                       <lvc:PieSeries   Title="Series 1" Values="200" />
+                        <lvc:PieSeries    Title="Series 2" Values="100" />
+                    </lvc:PieChart.Series>
+                </lvc:PieChart>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock Text="Date" x:Name="DateTextBlock"/>
+
+                </StackPanel>
+               
+            </Grid>
+        </TabItem>
+        <TabItem Header="Вкладка 3">Вторая вкладка</TabItem>
+
+    </TabControl>
+    
 </Window>

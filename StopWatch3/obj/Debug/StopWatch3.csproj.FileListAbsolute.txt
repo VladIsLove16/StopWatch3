@@ -13,3 +13,16 @@ D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\StopWatch3.csproj.CoreComp
 D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\StopWatch3.exe
 D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\StopWatch3.pdb
 D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\StopWatch3_MarkupCompile.lref
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\ControlzEx.dll
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.dll
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.Wpf.dll
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\ControlzEx.pdb
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\ControlzEx.xml
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.pdb
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.xml
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.Wpf.pdb
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\LiveCharts.Wpf.xml
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\for university\TPP\StopWatch3\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\StopWatch3.csproj.CopyComplete
