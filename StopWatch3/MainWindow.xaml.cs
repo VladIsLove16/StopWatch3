@@ -19,6 +19,7 @@ namespace StopwatchApp
         private ObservableCollection<StopwatchItem> stopwatches;
         private DispatcherTimer timer = new DispatcherTimer();
         DateTime selectedDate=new DateTime();
+       
 
         //событие СВОЙСТВО ИЗМЕНЕНО
         public event PropertyChangedEventHandler PropertyChanged;
@@ -45,7 +46,7 @@ namespace StopwatchApp
             timer.Tick += Timer_Tick;
             timer.Start();
             selectedDate = DateTime.Today;
-            DateTextBlock.Text = selectedDate.ToString();
+            DateTextBlock.Text = selectedDate.ToString("d");
         }
 //По клику кнопки Добавить
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +57,22 @@ namespace StopwatchApp
             stopwatchList.ItemsSource = stopwatches;
             nameTextBox.Text = "";
         }
- //По клику кнопки Старт
+        private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime selectedDate_ = (DateTime)calendar.SelectedDate;
+            selectedDate = selectedDate_;
+            DateTextBlock.Text = selectedDate.ToString("d");
+        }
+        public void OpenCalendar(object sender, RoutedEventArgs e)
+        {
+            calendar.IsEnabled = true;
+        }
+            public void CloseCalendar(object sender, RoutedEventArgs e)
+        {
+            calendar.IsEnabled = false;
+        }
+       
+        //По клику кнопки Старт
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;//переменная типа кнопка становится равна sender преобразованный в кнопку
