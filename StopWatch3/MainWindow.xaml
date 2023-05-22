@@ -5,7 +5,7 @@
         xmlns:converters="clr-namespace:StopwatchApp"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
 
-        Title="Stopwatch App" Height="460" Width="320">
+        Title="Stopwatch App" Height="612.496" Width="320">
     <TabControl>
         <TabItem Header="Вкладка 1">
             <Grid>
@@ -18,14 +18,14 @@
                 </Grid.RowDefinitions>
 
 
-                <ListBox x:Name="stopwatchList" ItemsSource="{Binding stopwatches}" Grid.Row="1">
+                <ListBox x:Name="stopwatchList" Grid.Row="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Name}" Width="100"/>
-                                <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss\\.f}'}" Width="100"/>
-                                <Button Content="Start" Click="StartButton_Click"/>
-                                <Button Content="Stop" Click="StopButton_Click"/>
+                                <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" Width="100"/>
+                                <Button Content="Start" Click="Start"/>
+                                <Button Content="Stop" Click="Stop"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -40,6 +40,10 @@
         </TabItem>
         <TabItem Header="Вкладка 2">
             <Grid Margin="8,0">
+                <Grid.Resources>
+                    <sys:DateTime x:Key="selectedDate" />
+
+                </Grid.Resources>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="100"/>
@@ -47,15 +51,12 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <lvc:PieChart Grid.Row="1" LegendLocation="Bottom" RenderTransformOrigin="0.464,0.596" Loaded="PieChart_Loaded">
-                    <lvc:PieChart.Series>
-                        <lvc:PieSeries   Title="Series 1" Values="200" />
-                        <lvc:PieSeries    Title="Series 2" Values="100" />
-                    </lvc:PieChart.Series>
+                <lvc:PieChart x:Name="MyPieChart" Grid.Row="1" LegendLocation="Bottom" RenderTransformOrigin="0.464,0.596" Loaded="PieChart_Loaded">
+                    
                 </lvc:PieChart>
                 <DockPanel Grid.Row="2" Margin="10,0">
-                    <TextBlock   Background="Beige" Text="Date" DockPanel.Dock="Left"  x:Name="DateTextBlock"/>
-                    <TextBlock  Background="Aqua" Text="Time" HorizontalAlignment="Right"  DockPanel.Dock="Right"  x:Name="SpendedTime" />
+                    <TextBlock   Background="Beige" Text="{Binding SelectedDateText}"  DockPanel.Dock="Left"  x:Name="DateTextBlock"/>
+                    <TextBlock  Background="Aqua" Text="Time" HorizontalAlignment="Right"  DockPanel.Dock="Right"  x:Name="DayStat" />
                 </DockPanel>
                 <TextBlock Text="Statistics" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                 <Calendar Grid.Row="0" x:Name="calendar" FirstDayOfWeek="Monday"
@@ -64,6 +65,7 @@
                         <CalendarDateRange Start="10/5/2013" End="10/8/2013"></CalendarDateRange>
                     </Calendar.BlackoutDates>
                 </Calendar>
+                
             </Grid>
         </TabItem>
         <TabItem Header="Вкладка 3">Вторая вкладка</TabItem>
