@@ -269,7 +269,7 @@ public event PropertyChangedEventHandler PropertyChanged;
         {
             if (IsActive)
             {
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ElapsedTime)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ElapsedTime)));
             }
         }
     }

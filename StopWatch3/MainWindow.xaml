@@ -24,8 +24,8 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Name}" Width="100"/>
                                 <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" Width="100"/>
-                                <Button Content="Start" Click="Start"/>
-                                <Button Content="Stop" Click="Stop"/>
+                                <Button Content="Start" Click="StartButton_Click"/>
+                                <Button Content="Stop" Click="StopButton_Click"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
