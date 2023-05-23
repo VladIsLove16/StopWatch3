@@ -105,6 +105,40 @@ public event PropertyChangedEventHandler PropertyChanged;
             }
         }
         Statistic Global = new Statistic();
+        public void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Tab1.IsSelected)
+                Console.WriteLine("Tab1.IsSelected");
+            if (Tab2.IsSelected)
+                Console.WriteLine("Tab2.IsSelected");
+            if (Tab3.IsSelected)
+                Console.WriteLine("Tab3.IsSelected");
+        }
+        public class TextItem : INotifyPropertyChanged
+        {
+            private string text = "";
+            public void AddLetter(string a)
+            {
+                Text += a;
+                Console.WriteLine(text);
+                //OnPropertyChanged(nameof(Text));
+            }
+            public string Text
+            {
+                get { return text; }
+                set
+                {
+                    text = value;
+                    OnPropertyChanged(nameof(Text));
+                }
+            }
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        TextItem text = new TextItem();
         //При запуске проекта
         public MainWindow()
         {
@@ -125,13 +159,7 @@ public event PropertyChangedEventHandler PropertyChanged;
             Statistic Global1 = new Statistic();
             calendar.SelectedDate = DateTime.Today;
             PieSeries serie1 = new PieSeries();
-            SeriesCollection collection = new SeriesCollection
-            {
-                new PieSeries { Values = new ChartValues<ObservableValue> { new ObservableValue(8) } },
-                new PieSeries { Values = new ChartValues<ObservableValue> { new ObservableValue(4) } },
-                new PieSeries {Title="a", Values = new ChartValues<ObservableValue> { new ObservableValue(2) } }
-            };
-            MyPieChart.Series = collection ;
+           
         }
       
         //По клику кнопки Добавить
@@ -202,7 +230,13 @@ public event PropertyChangedEventHandler PropertyChanged;
 
         private void PieChart_Loaded(object sender, RoutedEventArgs e)
         {
-
+            SeriesCollection collection = new SeriesCollection
+            {
+                new PieSeries { Values = new ChartValues<ObservableValue> { new ObservableValue(8) } },
+                new PieSeries { Values = new ChartValues<ObservableValue> { new ObservableValue(4) } },
+                new PieSeries {Title="a", Values = new ChartValues<ObservableValue> { new ObservableValue(2) } }
+            };
+            MyPieChart.Series = collection;
         }
     }
     //Интерфейс модели
