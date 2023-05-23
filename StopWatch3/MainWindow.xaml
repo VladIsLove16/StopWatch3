@@ -7,7 +7,7 @@
 
         Title="Stopwatch App" Height="612.496" Width="320">
     <TabControl SelectionChanged="TabControl_SelectionChanged">
-        <TabItem Header="Вкладка 1">
+        <TabItem x:Name="Tab1" Header="Вкладка 1">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -38,7 +38,7 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Вкладка 2">
+        <TabItem x:Name="Tab2" Header="Вкладка 2">
             <Grid Margin="8,0">
                 <Grid.Resources>
                     <sys:DateTime x:Key="selectedDate" />
@@ -68,7 +68,7 @@
                 
             </Grid>
         </TabItem>
-        <TabItem Header="Вкладка 3">Вторая вкладка</TabItem>
+        <TabItem x:Name="Tab3" Header="Вкладка 3">Вторая вкладка</TabItem>
 
     </TabControl>
 
