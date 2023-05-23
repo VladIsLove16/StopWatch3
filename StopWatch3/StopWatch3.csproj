@@ -102,6 +102,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="icon-int\bitmapPlay.pbm" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,6 +111,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon-int\angle-right.png" />
+    <Resource Include="icon-int\calendar.png" />
+    <Resource Include="icon-int\histogram.png" />
+    <Resource Include="icon-int\pause.png" />
+    <Resource Include="icon-int\pbm-Pause.png" />
+    <Resource Include="icon-int\play.png" />
+    <Resource Include="icon-int\play2.png" />
+    <Resource Include="icon-int\pmb-Play.png" />
+    <Resource Include="icon-int\time.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

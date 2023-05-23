@@ -5,9 +5,12 @@
         xmlns:converters="clr-namespace:StopwatchApp"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
 
-        Title="Stopwatch App" Height="612.496" Width="320">
+        Title="Stopwatch App" Height="640" Width="360">
     <TabControl SelectionChanged="TabControl_SelectionChanged">
-        <TabItem x:Name="Tab1" Header="Вкладка 1">
+        <TabItem x:Name="Tab1" Style="{StaticResource menu}" Margin="16,0,-16,0" HorizontalAlignment="Right" Width="104">
+            <TabItem.Header>
+                <Image Source="/icon-int/time.png" Height="24" Width="24" Stretch="Fill" Margin="0,-2,0,-2"/>
+            </TabItem.Header>
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -24,8 +27,12 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Name}" Width="100"/>
                                 <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" Width="100"/>
-                                <Button Content="Start" Click="StartButton_Click"/>
-                                <Button Content="Stop" Click="StopButton_Click"/>
+                                <Button Style="{StaticResource addButtons}" Margin="16,0,0,0" Padding="4,4,4,4" Click="StartButton_Click">
+                                    <Image Source="/icon-int/pmb-Play.png" Width="36" Height="36" />
+                                </Button>
+                                <Button Style="{StaticResource addButtons}" Margin="8,0,16,0" Padding="4,4,4,4" Click="StopButton_Click">
+                                    <Image Source="/icon-int/pbm-Pause.png"  Width="36" Height="36"/>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -34,11 +41,14 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <TextBox x:Name="nameTextBox" Width="100" Margin="5"/>
-                    <Button Content="Add Stopwatch" Click="AddButton_Click"/>
+                    <Button Style="{StaticResource buttonAction}" Content="Add Stopwatch" Click="AddButton_Click"/>
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem x:Name="Tab2" Header="Вкладка 2">
+        <TabItem x:Name="Tab2" Style="{StaticResource menu}"  VerticalAlignment="Center" Margin="16,0,-16,0" HorizontalAlignment="Right" Width="120">
+            <TabItem.Header>
+                <Image Source="/icon-int/calendar.png" Height="24" Width="24" Stretch="Fill" Margin="0,-2,0,-2" IsEnabled="False"/>
+            </TabItem.Header>
             <Grid Margin="8,0">
                 <Grid.Resources>
                     <sys:DateTime x:Key="selectedDate" />
@@ -68,8 +78,11 @@
                 
             </Grid>
         </TabItem>
-        <TabItem x:Name="Tab3" Header="Вкладка 3">Вторая вкладка</TabItem>
-
+        <TabItem x:Name="Tab3" Style="{StaticResource menu}"   Margin="16,0,-32,0" HorizontalAlignment="Left" Width="104">Вторая вкладка>
+            <TabItem.Header>
+                <Image Source="/icon-int/histogram.png" Height="24" Width="24" Stretch="Fill"/>
+            </TabItem.Header>
+        </TabItem>
     </TabControl>
 
 </Window>
