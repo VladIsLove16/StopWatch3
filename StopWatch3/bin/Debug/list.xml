@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfStopwatchItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StopwatchItem>
+    <IsActive>false</IsActive>
+    <Name>First</Name>
+    <ElapsedTime />
+  </StopwatchItem>
+  <StopwatchItem>
+    <IsActive>false</IsActive>
+    <Name>1</Name>
+    <ElapsedTime />
+  </StopwatchItem>
+  <StopwatchItem>
+    <IsActive>false</IsActive>
+    <Name>2</Name>
+    <ElapsedTime />
+  </StopwatchItem>
+  <StopwatchItem>
+    <IsActive>false</IsActive>
+    <Name>test</Name>
+    <ElapsedTime />
+  </StopwatchItem>
+</ArrayOfStopwatchItem>

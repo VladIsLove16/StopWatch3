@@ -56,3 +56,4 @@ C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\StopWatch3.csp
 C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\StopWatch3.exe
 C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\StopWatch3.pdb
 C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\App.baml
+D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\App.baml
