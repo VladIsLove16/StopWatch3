@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <DAy1>
-    <Name>Time</Name>
-    <Name2>Time2</Name2>
-  </DAy1>
-  <Day2>
-    <Name2>Time2</Name2>
-    <Name3>Time3</Name3>
-  </Day2>
+  <date_05-2023-25>
+    <test>00:00:01</test>
+    <test2>00:00:01</test2>
+    <First>00:00:06.5598825</First>
+    <Eating>00:00:02.4854335</Eating>
+  </date_05-2023-25>
 </Root>

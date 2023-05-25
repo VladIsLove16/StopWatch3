@@ -204,20 +204,8 @@ namespace StopwatchApp
         {
                 // Отображаем диалоговое окно с вопросом о сохранении изменений
                 MessageBoxResult result = MessageBox.Show("Хотите сохранить изменения?", "Сохранить изменения", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-            Console.WriteLine("saving ser");
-            serializ a = new serializ() ;
-            try
-            {
-                a.Ser("ser.xml");
-                Console.WriteLine("Saved ser");
-            }
-            catch { Console.WriteLine("Not saved "); }
-            try
-            {
-                a.deser("ser.xml");
-                Console.WriteLine("Deser completed");
-            }
-            catch { Console.WriteLine("Not deser "); }
+            
+            
 
             if (result == MessageBoxResult.Yes)
             {
@@ -235,6 +223,13 @@ namespace StopwatchApp
                     Console.WriteLine("Сохранение не удалось");
                    
                 }
+                try{
+                    Console.WriteLine("Serializing");
+                    MySerializer serializer = new MySerializer();
+                    serializer.Serializer("ser.xml", Global.Global_);
+                    Console.WriteLine("Serializing completed");
+                }
+                catch { Console.WriteLine("Serializing denied"); }
             }
             else if (result == MessageBoxResult.Cancel)
             {
@@ -254,6 +249,7 @@ namespace StopwatchApp
             InitializeComponent();
             //DataContext = this;
             /* Массив*/
+            
             if (!File.Exists(statpath) || !File.Exists(listpath))
             {
                 Stopwatches = new ObservableCollection<StopwatchItem>();
@@ -303,6 +299,18 @@ namespace StopwatchApp
             timer.Start();
             calendar.SelectedDate = DateTime.Today;
             Closing += MainWindow_Closing;
+            try
+            {
+                MySerializer serializer = new MySerializer();
+                Global.Global_ = serializer.Deserializer("ser.xml");
+                Console.WriteLine("Deser completed");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Deser denied");
+                Console.WriteLine(ex);
+            }
             //Statistic loadedObject = LoadCustomTypeFromFile(filePath);
         }
       
