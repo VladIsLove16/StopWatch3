@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml.Serialization;
-
+using StopwatchApp;
 namespace StopwatchApp
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
@@ -21,8 +21,11 @@ namespace StopwatchApp
         public event PropertyChangedEventHandler PropertyChanged;
         string statpath = "stat.xml";
         string listpath = "list.xml";
+        string pathpath = "path.xml";
+        string path;
         Statistic Global;
         //Массива Секундомеров
+
         public ObservableCollection<StopwatchItem> Stopwatches
         {
             get { return stopwatches; }
@@ -32,11 +35,12 @@ namespace StopwatchApp
                 // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Stopwatches)));
             }
         }
+        [Serializable]
         public class Statistic
         {
             private Dictionary<DateTime, Dictionary<string, TimeSpan>> Global;
             private TimeSpan selectedDayTime;
-            private DateTime selectedDay;
+            private DateTime selectedDay; 
             public Statistic(){
                 Global = new Dictionary<DateTime, Dictionary<string, TimeSpan>>();
             }
@@ -142,14 +146,14 @@ namespace StopwatchApp
         }
         public static class DataSaver
         {
-            public static void  SaveStat(Dictionary<DateTime, Dictionary<string, TimeSpan>> data, string filePath)
+            public static void  SaveStat(Statistic data, string filePath)
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<DateTime, Dictionary<string, TimeSpan>>));
-                Console.WriteLine("Serialer created");
+                var serializer = new XmlSerializer(typeof(Statistic));
+                Console.WriteLine("Serializer created");
                 using (FileStream stream = new FileStream(filePath, FileMode.Create))
                 {
-                   
-                    serializer.Serialize(stream, data); Console.WriteLine("Serialer Serialized");
+                    serializer.Serialize(stream, data);
+                    Console.WriteLine("Serialer Serialized");
                 }
             }
             public static void SaveList(ObservableCollection<StopwatchItem> data, string filePath)
@@ -158,6 +162,16 @@ namespace StopwatchApp
                 using (FileStream stream = new FileStream(filePath, FileMode.Create))
                 {
                     serializer.Serialize(stream, data);
+                }
+            }
+            public static void SavePath(string data, string filePath)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(string));
+                Console.WriteLine("Serializer created");
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    serializer.Serialize(stream, data);
+                    Console.WriteLine("Serialer Serialized");
                 }
             }
         }
@@ -190,18 +204,34 @@ namespace StopwatchApp
         {
                 // Отображаем диалоговое окно с вопросом о сохранении изменений
                 MessageBoxResult result = MessageBox.Show("Хотите сохранить изменения?", "Сохранить изменения", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            Console.WriteLine("saving ser");
+            serializ a = new serializ() ;
+            try
+            {
+                a.Ser("ser.xml");
+                Console.WriteLine("Saved ser");
+            }
+            catch { Console.WriteLine("Not saved "); }
+            try
+            {
+                a.deser("ser.xml");
+                Console.WriteLine("Deser completed");
+            }
+            catch { Console.WriteLine("Not deser "); }
 
             if (result == MessageBoxResult.Yes)
             {
                 // Выполняем сохранение изменений
                 try
                 {
-                    DataSaver.SaveStat(Global.Global_, statpath);
+                    DataSaver.SaveStat(Global, statpath);
                     DataSaver.SaveList(stopwatches, listpath);
+                    DataSaver.SavePath(path, pathpath);
                     Console.WriteLine("Сохранение удалось");
                 }
-                catch
+                catch(Exception e23)
                 {
+                    Console.WriteLine(e23);
                     Console.WriteLine("Сохранение не удалось");
                    
                 }
@@ -258,6 +288,12 @@ namespace StopwatchApp
                     new PieSeries { Values = new ChartValues<ObservableValue> { new ObservableValue(1) },Title="Default" },
                      };
                     MyPieChart.Series = collection;
+                }
+                try
+                {
+                    path = LoadCustomTypeFromFile<string>(pathpath);
+                }catch{
+                    Console.WriteLine("Cохранение пути не удалось");
                 }
             }
             stopwatchList.ItemsSource = stopwatches;
