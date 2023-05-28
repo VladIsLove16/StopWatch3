@@ -7,17 +7,12 @@
   </StopwatchItem>
   <StopwatchItem>
     <IsActive>false</IsActive>
-    <Name>1</Name>
+    <Name>Second</Name>
     <ElapsedTime />
   </StopwatchItem>
   <StopwatchItem>
     <IsActive>false</IsActive>
-    <Name>2</Name>
-    <ElapsedTime />
-  </StopwatchItem>
-  <StopwatchItem>
-    <IsActive>false</IsActive>
-    <Name>test</Name>
+    <Name>Third</Name>
     <ElapsedTime />
   </StopwatchItem>
 </ArrayOfStopwatchItem>
