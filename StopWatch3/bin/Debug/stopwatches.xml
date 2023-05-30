@@ -3,16 +3,19 @@
   <StopwatchItem>
     <IsActive>false</IsActive>
     <Name>First</Name>
+    <IsItemSelected>false</IsItemSelected>
     <ElapsedTime />
   </StopwatchItem>
   <StopwatchItem>
     <IsActive>false</IsActive>
     <Name>Second</Name>
+    <IsItemSelected>false</IsItemSelected>
     <ElapsedTime />
   </StopwatchItem>
   <StopwatchItem>
     <IsActive>false</IsActive>
     <Name>Third</Name>
+    <IsItemSelected>false</IsItemSelected>
     <ElapsedTime />
   </StopwatchItem>
 </ArrayOfStopwatchItem>

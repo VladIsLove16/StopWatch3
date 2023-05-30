@@ -13,8 +13,9 @@ namespace StopwatchApp
 
     [Serializable]
     [XmlRoot("TaskTracker")]
-    public class TaskTracker
+    public class TaskTracker :INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         [XmlArray("TasksByDate")]
         [XmlArrayItem("DailyTasks")]
         public List<DailyTasks> TasksByDate { get; set; }
@@ -33,6 +34,7 @@ namespace StopwatchApp
                 TasksByDate.Add(dailyTasks);
             }
             dailyTasks.Tasks.Add(task);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TasksByDate)));
         }
 
         public List<Task> GetTasksByDate(DateTime date)
@@ -74,7 +76,7 @@ namespace StopwatchApp
         }
 
     }
-    public class DailyTasks
+    public class DailyTasks:INotifyPropertyChanged
     {
         [XmlElement("Date")]
         public DateTime Date { get; set; }
@@ -92,6 +94,8 @@ namespace StopwatchApp
             Tasks = new List<Task>();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void UpdateTaskTime(string taskName, TimeSpan Time)
         {
             Task task = Tasks.Find(t => t.Name == taskName);
@@ -99,10 +103,14 @@ namespace StopwatchApp
             {
                 task.Time += Time;
             }
-            else Tasks.Add(new Task(taskName, Time));
+            else
+            {
+                Tasks.Add(new Task(taskName, Time));
+            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(task.Time)));
 
         }
-        public TimeSpan CalculateTotalTime()
+            public TimeSpan CalculateTotalTime()
         {
             TimeSpan totalTime = TimeSpan.Zero;
             foreach (Task task in Tasks)

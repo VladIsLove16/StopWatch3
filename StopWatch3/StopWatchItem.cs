@@ -13,6 +13,7 @@ namespace StopWatchItem
         private string name;
         private Stopwatch stopwatch;
         private bool isActive;
+        private bool isItemSelected;
         public event PropertyChangedEventHandler PropertyChanged;
         //Активность
         public bool IsActive
@@ -34,6 +35,16 @@ namespace StopWatchItem
                 //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
             }
         }
+        
+        public bool IsItemSelected
+        {
+            get { return isItemSelected; }
+            set
+            {
+                isItemSelected = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsItemSelected)));
+            }
+        }
         //Время
         public TimeSpan ElapsedTime
         {
@@ -48,11 +59,12 @@ namespace StopWatchItem
         //создание экземпляра класса
         public StopwatchItem(string name)
         {
+            IsItemSelected = false;
             Name = name;
             stopwatch = new Stopwatch();
         }
         public StopwatchItem()
-        { stopwatch = new Stopwatch(); }
+        { stopwatch = new Stopwatch(); IsItemSelected = false; }
         //запуск таймера
         public void Start()
         {

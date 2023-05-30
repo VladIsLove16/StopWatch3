@@ -18,9 +18,21 @@
     </DailyTasks>
     <DailyTasks>
       <Date>2023-05-29T00:00:00</Date>
+      <Tasks>
+        <Name>Second</Name>
+        <Time>00:00:00.7497930</Time>
+      </Tasks>
+      <Tasks>
+        <Name>First</Name>
+        <Time>00:00:01.9706177</Time>
+      </Tasks>
     </DailyTasks>
     <DailyTasks>
       <Date>2023-05-30T00:00:00</Date>
+      <Tasks>
+        <Name>Third</Name>
+        <Time>00:00:00.6236759</Time>
+      </Tasks>
     </DailyTasks>
     <DailyTasks>
       <Date>2023-05-31T00:00:00</Date>

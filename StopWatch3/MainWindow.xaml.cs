@@ -12,10 +12,16 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using StopWatchItem;
+using System.Windows.Data;
+using System.Globalization;
+using System.Windows.Input;
+
 namespace StopwatchApp
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        
+        private StopwatchItem selectedStopwatch;
         private ObservableCollection<StopwatchItem> stopwatches;
         private DispatcherTimer timer = new DispatcherTimer();
         public event PropertyChangedEventHandler PropertyChanged;
@@ -31,11 +37,9 @@ namespace StopwatchApp
                 {
                     Title = task.Name,
                     Values = new ChartValues<ObservableValue> { new ObservableValue(task.Time.TotalSeconds) }
-
                 });
             MyPieChart.Series = collection;
         }
-        
         public ObservableCollection<StopwatchItem> Stopwatches
         {
             get { return stopwatches; }
@@ -44,17 +48,20 @@ namespace StopwatchApp
                 stopwatches = value;
                 {
                     Console.WriteLine("Список изменён");
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Stopwatches)));
+                   // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Stopwatches)));
                    
                 }
             }
         }
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            Console.WriteLine("Дата изменена");
             DateTime selectedDate = (DateTime)calendar.SelectedDate;
             DateTextBlock.Text = selectedDate.ToString("d");
             DayStat.Text=Tracker.CalculateTotalTimeForDate(selectedDate).ToString(@"hh\:mm\:ss");
             UpdateChart();
+            StatiscticList.ItemsSource = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+            Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);
         }
         public void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -65,17 +72,16 @@ namespace StopwatchApp
 
             if (Tab2.IsSelected)
             {
-                 
+                StatiscticList.Items.Refresh();
                 DateTime selectedDate = (DateTime)calendar.SelectedDate;
                 UpdateChart();
                 DateTextBlock.Text = selectedDate.ToString("d");
-                DataContext = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+               // DataContext = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
                 DayStat.Text = Tracker.CalculateTotalTimeForDate(selectedDate).ToString(@"hh\:mm\:ss");
                 Console.WriteLine("Tab2.IsSelected");
             }
-            if (Tab3.IsSelected)
-                Console.WriteLine("Tab3.IsSelected");
         }
+
         public static T LoadCustomTypeFromFile<T>(string filePath)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(object));
@@ -89,36 +95,61 @@ namespace StopwatchApp
         {
             string name = nameTextBox.Text.Trim();
             StopwatchItem stopwatch = new StopwatchItem(name);
-            Stopwatches.Add(stopwatch);
-            stopwatchList.ItemsSource = stopwatches;
+            stopwatches.Add(stopwatch);
             nameTextBox.Text = "";
         }
-        public void OpenCalendar(object sender, RoutedEventArgs e)
+       
+        public StopwatchItem SelectedStopwatch
         {
-            calendar.IsEnabled = true;
+            get { return selectedStopwatch; }
+            set
+            {
+                selectedStopwatch = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedStopwatch)));
+            }
         }
-            public void CloseCalendar(object sender, RoutedEventArgs e)
+      
+        private void StopwatchesSelectionChanged(object sender, MouseButtonEventArgs e)
         {
-            calendar.IsEnabled = false;
+            if (SelectedStopwatch == null)
+            {
+                SelectedStopwatch = (StopwatchItem)stopwatchList.SelectedItem;
+                SelectedStopwatch.IsItemSelected = true;
+            }
+            else
+            {
+
+                SelectedStopwatch.IsItemSelected = false;
+                if (SelectedStopwatch == (StopwatchItem)stopwatchList.SelectedItem)
+                { 
+                    SelectedStopwatch = null;
+                }
+                else
+                {
+                    SelectedStopwatch = (StopwatchItem)stopwatchList.SelectedItem;
+                    SelectedStopwatch.IsItemSelected = true;
+                }
+            }
         }
         private void DeleteStopWatch(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;//переменная типа кнопка становится равна sender преобразованный в кнопку
-            StopwatchItem stopwatch = (StopwatchItem)button.DataContext;//переменная типа секундомеритем становится равна контексту кнопки преобразованному в секундомеритем
-            stopwatches.Remove(stopwatch);
+            Stopwatches.Remove(SelectedStopwatch);
         }
-        //По клику кнопки Старт
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;//переменная типа кнопка становится равна sender преобразованный в кнопку
             StopwatchItem stopwatch = (StopwatchItem)button.DataContext;//переменная типа секундомеритем становится равна контексту кнопки преобразованному в секундомеритем
             stopwatch.Start();
+            
         }
 //По клику кнопки Стоп
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
+            Button button = (Button)sender; 
+            Console.WriteLine(button.DataContext);
+            Console.WriteLine(sender.ToString());
             StopwatchItem stopwatch = (StopwatchItem)button.DataContext;
+            
             stopwatch.Stop();
             Console.WriteLine("Обновление времени на {0}", stopwatch.ElapsedTime.TotalSeconds);
             Tracker.UpdateTaskTimeForDate(DateTime.Today, stopwatch.Name, stopwatch.ElapsedTime);
@@ -175,6 +206,7 @@ namespace StopwatchApp
                 e.Cancel = true;
             }
         }
+        public List<Task> TaskList=new List<Task>(); 
         public MainWindow()
         {
             InitializeComponent();
@@ -207,8 +239,12 @@ namespace StopwatchApp
                 {
                     Console.WriteLine(ex);
                 }
-            calendar.SelectedDate = DateTime.Today;
+            Tab2Grid.DataContext = this;
             stopwatchList.ItemsSource = Stopwatches;
+            calendar.SelectedDate = DateTime.Today;
+            TaskList = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+            StatiscticList.ItemsSource = TaskList;
+           
             Console.WriteLine("Выставление Интервала");
             timer.Interval = TimeSpan.FromMilliseconds(50);
             timer.Tick += Timer_Tick;
@@ -220,6 +256,7 @@ namespace StopwatchApp
         private void IsNull(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);
+            TaskList.Clear();
         }
     }
 
