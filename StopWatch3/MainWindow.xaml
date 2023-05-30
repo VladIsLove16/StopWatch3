@@ -9,48 +9,51 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
-    <TabControl SelectionChanged="TabControl_SelectionChanged">
-        
+    <TabControl SelectionChanged="TabControl_SelectionChanged" Background="#FFF2F4FF">
         <TabItem x:Name="Tab1" Style="{StaticResource menu}" Margin="16,0,-16,0" HorizontalAlignment="Right" Width="104">
             <TabItem.Header>
                 <Image Source="/icon-int/time.png" Height="24" Width="24" Stretch="Fill" Margin="0,-2,0,-2"/>
             </TabItem.Header>
-            <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="57*"/>
+                    <RowDefinition Height="484*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-
-
-                <ListBox x:Name="stopwatchList" Grid.Row="1">
+                <ListBox x:Name="stopwatchList" Grid.Row="1" Margin="0,56,0,0" Background="#FFF2F4FF" Grid.RowSpan="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel MouseUp="StopwatchesSelectionChanged"  x:Name="StackMain">
                                 <StackPanel x:Name="Stack1" Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name}" Width="100"/>
-                                    <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" Width="100"/>
-                                    <Button Style="{StaticResource addButtons}" Margin="16,0,0,0" Padding="4,4,4,4" Click="StartButton_Click">
-                                        <Image Source="/icon-int/pmb-Play.png" Width="36" Height="36" />
+                                    <TextBlock Text="{Binding Name}" Margin="0,4,0,0" FontSize="18" Width="100"/>
+                                    <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" Width="100" Margin="0,4,0,0" FontSize="18"/>
+                                    <Button Style="{StaticResource addButtons}" Width="36" Height="36" Margin="58,0,0,0" Padding="4,4,4,4" Click="StartButton_Click">
+                                        <Image Source="/icon-int/pmb-Play.png" Width="24" Height="24" />
                                     </Button>
-                                    <Button Style="{StaticResource addButtons}" Margin="8,0,16,0" Padding="4,4,4,4" Click="StopButton_Click">
-                                        <Image Source="/icon-int/pbm-Pause.png"  Width="36" Height="36"/>
+                                    <Button Style="{StaticResource addButtons}" Width="36" Height="36" Margin="8,0,16,0" Padding="4,4,4,4" Click="StopButton_Click">
+                                        <Image Source="/icon-int/stop.png"  Width="16" Height="16"/>
                                     </Button>
                                 </StackPanel>
                                 <StackPanel x:Name="Stack2">
-                                    <Button Width="100" Height="40" Content="Delete" Click="DeleteStopWatch" Visibility="{Binding IsItemSelected,Converter={StaticResource BoolToVis}}"/>
+                                  <Button Width="100" Height="40" Content="Delete" Click="DeleteStopWatch" Visibility="{Binding IsItemSelected,Converter={StaticResource BoolToVis}}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
-
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBox x:Name="nameTextBox" Width="100" Margin="5"/>
-                    <Button Style="{StaticResource buttonAction}" Content="Add Stopwatch" Click="AddButton_Click"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,7,0,6" Grid.RowSpan="2">
+                    <TextBox x:Name="nameTextBox" MaxLength="22" FontSize="18" Width="216" Height="36" TextWrapping="Wrap" Margin="16,0,0,0">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button Style="{StaticResource buttonAction}" Margin="36,0,0,0" Click="AddButton_Click" Height="36" Width="76">
+                        <Image Source="/icon-int/plus.png" Height="24" Width="24" Stretch="Fill" Margin="0,-2,0,-2"/>
+                    </Button>
                 </StackPanel>
             </Grid>
         </TabItem>
@@ -61,7 +64,6 @@
             <Grid Margin="8,0" x:Name="Tab2Grid" >
                 <Grid.Resources>
                     <sys:DateTime x:Key="selectedDate" />
-
                 </Grid.Resources>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -70,26 +72,22 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Calendar Grid.Row="0" x:Name="calendar" FirstDayOfWeek="Monday"
+                <Calendar Grid.Row="0" x:Name="calendar"
                     SelectedDatesChanged="Calendar_SelectedDatesChanged" >
-                    <Calendar.BlackoutDates>
-                        <CalendarDateRange Start="10/5/2013" End="10/8/2013"></CalendarDateRange>
-                    </Calendar.BlackoutDates>
                 </Calendar>
                 <lvc:PieChart x:Name="MyPieChart" Grid.Row="1" LegendLocation="Bottom"  RenderTransformOrigin="0.464,0.596" Loaded="PieChart_Loaded">
-
                 </lvc:PieChart>
                 <DockPanel Grid.Row="2" Margin="10,0">
-                    <TextBlock   Background="Beige"   DockPanel.Dock="Left"  x:Name="DateTextBlock"/>
-                    <TextBlock  Background="Aqua" Text="Time" HorizontalAlignment="Right"  DockPanel.Dock="Right"  x:Name="DayStat" RenderTransformOrigin="-1.269,0.4" />
+                    <TextBlock FontSize="18" Margin="0,5,0,0" FontWeight="Bold" DockPanel.Dock="Left" x:Name="DateTextBlock"/>
+                    <TextBlock Text="Time" HorizontalAlignment="Right" DockPanel.Dock="Right" FontWeight="Bold" FontSize="18" Margin="0,5,0,0" x:Name="DayStat" RenderTransformOrigin="-1.269,0.4" />
                 </DockPanel>
-                <TextBlock Text="Statistics"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Statistics"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Button Content="NextDate" HorizontalAlignment="Left" Margin="255,55,0,0" VerticalAlignment="Top" Width="75" Click="NextDate"/>
                 <Button Content="IsNull" HorizontalAlignment="Left" Margin="255,111,0,0" VerticalAlignment="Top" Width="75" Click="IsNull"/>
                 <ListBox   x:Name="StatiscticList" Grid.Row="4">
                     <ListBox.ItemTemplate >
                         <DataTemplate>
-                            <Grid Background="Blue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="310">
+                            <Grid Background="Blue" Width="310">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
@@ -100,10 +98,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
-
             </Grid>
         </TabItem>
     </TabControl>
-
 </Window>
