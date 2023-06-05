@@ -40,8 +40,40 @@ namespace StopwatchApp
         public List<Task> GetTasksByDate(DateTime date)
         {
             DailyTasks dailyTasks = TasksByDate.Find(d => d.Date.Date == date.Date);
-            Console.WriteLine("Дата существует");
+            if (dailyTasks != null)
+                Console.WriteLine("Дата существует");
+            else Console.WriteLine("Дата не найдена");
             return dailyTasks?.Tasks ?? new List<Task>();
+        }
+        public List<Task> GetTasksByDates(List<DateTime> dates)
+        {
+            Dictionary<string, TimeSpan> combinedDictionary = new Dictionary<string, TimeSpan>();
+               
+            foreach (var date in dates)
+            {
+                List<Task> tasks = GetTasksByDate(date);
+                foreach (var task in tasks)
+                {
+                    if (combinedDictionary.ContainsKey(task.Name))
+                    {
+                        combinedDictionary[task.Name] += task.Time;
+                    }
+                    else
+                    {
+                        combinedDictionary[task.Name] = task.Time;
+                    }
+                }
+            }
+
+                List<Task> combinedList = new List<Task>();
+
+                foreach (var pair in combinedDictionary)
+                {
+                    combinedList.Add(new Task(pair.Key, pair.Value));
+                }
+
+                return combinedList;
+            
         }
 
         public void UpdateTaskTimeForDate(DateTime date, string taskName, TimeSpan newTime)
@@ -72,7 +104,16 @@ namespace StopwatchApp
                 Console.WriteLine(ex);
                 return TimeSpan.Zero;
             }
-            
+
+        }
+        public TimeSpan CalculateTotalTimeForTasks(List<Task> tasks)
+        {
+            TimeSpan time = new TimeSpan();
+            foreach (var task in tasks)
+            {
+                time += task.Time;
+            }
+            return time;
         }
 
     }
@@ -123,7 +164,7 @@ namespace StopwatchApp
     }
 
     [Serializable]
-    public class Task :INotifyPropertyChanged
+    public class Task : INotifyPropertyChanged
     {
         [XmlElement("Name")]
         public string Name { get; set; }

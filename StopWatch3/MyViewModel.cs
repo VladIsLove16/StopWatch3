@@ -1,10 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Windows.Data;
+
 namespace StopwatchApp
 {
     public class MyViewModel : INotifyPropertyChanged
     {
+
         private DateTime _selectedDate=DateTime.Today;
 
         public DateTime SelectedDate

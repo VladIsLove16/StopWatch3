@@ -12,12 +12,27 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using StopWatchItem;
-using System.Windows.Data;
 using System.Globalization;
 using System.Windows.Input;
-
+using System.Windows.Data;
+using System.Linq;
 namespace StopwatchApp
 {
+    public class Inverser : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+                return !boolValue;
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         
@@ -28,10 +43,22 @@ namespace StopwatchApp
         string TrackerPath = "tracker.xml";
         string stopwatchesPath = "stopwatches.xml";
         TaskTracker Tracker;
+        
+        public void UpdateChart(List<Task> dailyTasks)
+        {
+            SeriesCollection collection = new SeriesCollection();
+            foreach (var task in dailyTasks)
+                collection.Add(new PieSeries
+                {
+                    Title = task.Name,
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(task.Time.TotalSeconds) }
+                });
+            MyPieChart.Series = collection;
+        }
         public void UpdateChart()
         {
             SeriesCollection collection = new SeriesCollection();
-            List<Task> dailyTasks= Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+            List<Task> dailyTasks = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
             foreach (var task in dailyTasks)
                 collection.Add(new PieSeries
                 {
@@ -56,12 +83,29 @@ namespace StopwatchApp
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             Console.WriteLine("Дата изменена");
-            DateTime selectedDate = (DateTime)calendar.SelectedDate;
-            DateTextBlock.Text = selectedDate.ToString("d");
-            DayStat.Text=Tracker.CalculateTotalTimeForDate(selectedDate).ToString(@"hh\:mm\:ss");
-            UpdateChart();
-            StatiscticList.ItemsSource = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
-            Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);
+            SelectedDatesCollection dates = calendar.SelectedDates;
+            DateTextBlock.Text=dates[0].ToString("d");
+            if (dates.Count > 1)
+            {
+                DateTextBlock.Text += "-";
+                DateTextBlock.Text += dates[dates.Count - 1].ToString("d");
+                List < DateTime >DateList= dates.ToList();
+                List<Task> tasks = Tracker.GetTasksByDates(DateList);
+                DayStat.Text = Tracker.CalculateTotalTimeForTasks(tasks).ToString();
+                StatiscticList.ItemsSource = tasks;
+                Console.WriteLine(tasks.Count) ;
+                UpdateChart(tasks);
+            }
+            else { 
+                DayStat.Text=Tracker.CalculateTotalTimeForDate((DateTime)calendar.SelectedDate).ToString(@"hh\:mm\:ss");
+                StatiscticList.ItemsSource = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+                Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);
+                Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
+                UpdateChart();
+            }
+           
+           
+            
         }
         public void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -111,22 +155,24 @@ namespace StopwatchApp
       
         private void StopwatchesSelectionChanged(object sender, MouseButtonEventArgs e)
         {
+            StopwatchItem ListSelectedItem = (StopwatchItem)stopwatchList.SelectedItem;
+            Console.WriteLine(ListSelectedItem.Name);
             if (SelectedStopwatch == null)
             {
-                SelectedStopwatch = (StopwatchItem)stopwatchList.SelectedItem;
+                SelectedStopwatch = ListSelectedItem;
                 SelectedStopwatch.IsItemSelected = true;
+
             }
             else
             {
-
                 SelectedStopwatch.IsItemSelected = false;
-                if (SelectedStopwatch == (StopwatchItem)stopwatchList.SelectedItem)
+                if (SelectedStopwatch == ListSelectedItem)
                 { 
                     SelectedStopwatch = null;
                 }
                 else
                 {
-                    SelectedStopwatch = (StopwatchItem)stopwatchList.SelectedItem;
+                    SelectedStopwatch = ListSelectedItem;
                     SelectedStopwatch.IsItemSelected = true;
                 }
             }
@@ -146,10 +192,7 @@ namespace StopwatchApp
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender; 
-            Console.WriteLine(button.DataContext);
-            Console.WriteLine(sender.ToString());
             StopwatchItem stopwatch = (StopwatchItem)button.DataContext;
-            
             stopwatch.Stop();
             Console.WriteLine("Обновление времени на {0}", stopwatch.ElapsedTime.TotalSeconds);
             Tracker.UpdateTaskTimeForDate(DateTime.Today, stopwatch.Name, stopwatch.ElapsedTime);
@@ -157,6 +200,7 @@ namespace StopwatchApp
             foreach (var task in Tracker.GetTasksByDate(DateTime.Today))
                 Console.WriteLine($"{task.Name} {task.Time.ToString(@"hh\:mm\:ss")} "  );
             stopwatch.Reset();
+                Console.WriteLine(SelectedStopwatch==null?"null":SelectedStopwatch.Name);
         }
         //При тике таймера
         private void Timer_Tick(object sender, EventArgs e)
