@@ -4,16 +4,40 @@
 winexe
 C#
 .cs
+<<<<<<< Updated upstream
 C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\
+=======
+<<<<<<< HEAD
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 3.3.0 из гита\StopWatch3\StopWatch3\obj\Debug\
+=======
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\
+>>>>>>> 4ce8b5043d2c89a311a8126d72a98938f56df908
+>>>>>>> Stashed changes
 StopWatch3
 none
 false
 DEBUG;TRACE
+<<<<<<< Updated upstream
 C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\App.xaml
 1219584333
 
 10-333974472
 21865946651
+=======
+<<<<<<< HEAD
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 3.3.0 из гита\StopWatch3\StopWatch3\App.xaml
+1219584333
+
+10-333974472
+21-157017757
+=======
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\App.xaml
+1219584333
+
+10-333974472
+21865946651
+>>>>>>> 4ce8b5043d2c89a311a8126d72a98938f56df908
+>>>>>>> Stashed changes
 MainWindow.xaml;
 
 False

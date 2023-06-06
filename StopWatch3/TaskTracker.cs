@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-
 namespace StopwatchApp
 {
 
@@ -36,7 +35,6 @@ namespace StopwatchApp
             dailyTasks.Tasks.Add(task);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TasksByDate)));
         }
-
         public List<Task> GetTasksByDate(DateTime date)
         {
             DailyTasks dailyTasks = TasksByDate.Find(d => d.Date.Date == date.Date);
@@ -180,15 +178,9 @@ namespace StopwatchApp
         [XmlElement("Time")]
         public string TimeString
         {
-            get
-            {
-                return Time.ToString();
-            }
-            set
-            {
-                Time = string.IsNullOrEmpty(value) ?
-                    TimeSpan.Zero : TimeSpan.Parse(value);
-            }
+            get{return Time.ToString(); }
+            set{ Time = string.IsNullOrEmpty(value) ?
+                    TimeSpan.Zero : TimeSpan.Parse(value); }
         }
         public Task()
         {

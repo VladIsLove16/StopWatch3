@@ -12,9 +12,19 @@ DEBUG;TRACE
 C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\App.xaml
 1219584333
 
+<<<<<<< Updated upstream
 91748114146
 21865946651
+=======
+<<<<<<< HEAD
+10-1806821257
+211301846677
+=======
+91748114146
+21865946651
+>>>>>>> 4ce8b5043d2c89a311a8126d72a98938f56df908
+>>>>>>> Stashed changes
 MainWindow.xaml;
 
-False
+True
 

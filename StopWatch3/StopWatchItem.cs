@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace StopWatchItem
 {
     [Serializable]
@@ -15,7 +11,6 @@ namespace StopWatchItem
         private bool isActive;
         private bool isItemSelected;
         public event PropertyChangedEventHandler PropertyChanged;
-        //Активность
         public bool IsActive
         {
             get { return isActive; }
@@ -25,17 +20,14 @@ namespace StopWatchItem
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsActive)));
             }
         }
-        //Имя
         public string Name
         {
             get { return name; }
             set
             {
                 name = value;
-                //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
             }
         }
-        
         public bool IsItemSelected
         {
             get { return isItemSelected; }
@@ -45,7 +37,6 @@ namespace StopWatchItem
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsItemSelected)));
             }
         }
-        //Время
         public TimeSpan ElapsedTime
         {
             get { return stopwatch.Elapsed; }
@@ -55,8 +46,6 @@ namespace StopWatchItem
                 Console.WriteLine("ElapsedTime Changed");
             }
         }
-
-        //создание экземпляра класса
         public StopwatchItem(string name)
         {
             IsItemSelected = false;
@@ -65,13 +54,11 @@ namespace StopWatchItem
         }
         public StopwatchItem()
         { stopwatch = new Stopwatch(); IsItemSelected = false; }
-        //запуск таймера
         public void Start()
         {
             stopwatch.Start();
             IsActive = true;
         }
-        //остановка таймера
         public void Stop()
         {
             stopwatch.Stop();
@@ -81,7 +68,6 @@ namespace StopWatchItem
         {
             stopwatch.Reset();
         }
-        //изменение времени, если таймер активен
         public void UpdateElapsedTime()
         {
             if (IsActive)

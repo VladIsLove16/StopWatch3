@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:StopwatchApp"
 
 
+<<<<<<< Updated upstream
         Title="ШАБЛОН "  Height="640" Width="360">
+=======
+<<<<<<< HEAD
+        Title="Stopwatch App" Height="640" Width="376">
+=======
+        Title="ШАБЛОН "  Height="640" Width="360">
+>>>>>>> 4ce8b5043d2c89a311a8126d72a98938f56df908
+>>>>>>> Stashed changes
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <local:Inverser x:Key="Inverse"/>
@@ -76,6 +84,22 @@
                     <RowDefinition Height="36"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                <StackPanel>
+                    <Button x:Name="CalButton" Click="CalButton_Click" Style="{StaticResource buttonAction}" HorizontalAlignment="Left" Margin="10,16,0,0" Height="36" Width="76">
+                        <Image Source="/icon-int/calendar.png" Height="24" Width="24" Stretch="Fill" Margin="0,-2,0,-2"/>
+                    </Button>
+                    <TextBlock Text="23.05.2023" FontSize="16" HorizontalAlignment="Right" Margin="0,-30,8,0" FontWeight="Bold" DockPanel.Dock="Left" x:Name="DateTextBlock"/>
+                    <Calendar x:Name="calendar" Panel.ZIndex="2" Grid.Row="0" SelectionMode="MultipleRange" Margin="10,0,0,0" HorizontalAlignment="Left"
+                        SelectedDatesChanged="Calendar_SelectedDatesChanged" Visibility="Hidden"/>
+                    <lvc:PieChart x:Name="MyPieChart" Grid.Row="1" Panel.ZIndex="1" LegendLocation="Bottom" RenderTransformOrigin="0.464,0.596" Loaded="PieChart_Loaded" Height="139" Margin="0,-140,0,0"/>
+                </StackPanel>
+                <DockPanel Grid.Row="2" Margin="10,0">
+                    <TextBlock Text="00:00:01" HorizontalAlignment="Right" DockPanel.Dock="Right" FontWeight="Bold" FontSize="18" Margin="0,5,0,0" x:Name="DayStat" RenderTransformOrigin="-1.269,0.4" />
+=======
+>>>>>>> Stashed changes
                 <Calendar Grid.Row="0" x:Name="calendar" SelectionMode="MultipleRange"
                     SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="0,0,0,100" Grid.RowSpan="2" >
                 </Calendar>
@@ -83,6 +107,10 @@
                 <DockPanel Grid.Row="2" Margin="10,0,10,3">
                     <TextBlock Text="23.05.2023" FontSize="16" Margin="0,5,0,0" FontWeight="Bold" DockPanel.Dock="Left" x:Name="DateTextBlock"/>
                     <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" HorizontalAlignment="Right" DockPanel.Dock="Right" FontWeight="Bold" FontSize="16" Margin="0,5,0,0" x:Name="DayStat" RenderTransformOrigin="-1.269,0.4" />
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4ce8b5043d2c89a311a8126d72a98938f56df908
+>>>>>>> Stashed changes
                 </DockPanel>
                 <TextBlock Text="Statistics" FontWeight="Bold" FontSize="16" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="21" Width="66"/>
                 <ListBox x:Name="StatiscticList" Grid.Row="4">

@@ -1,9 +1,9 @@
-﻿using System;
+﻿//в разработке
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
-
 namespace StopwatchApp
 {
     public class MyViewModel : INotifyPropertyChanged

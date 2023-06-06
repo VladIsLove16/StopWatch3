@@ -103,9 +103,6 @@ namespace StopwatchApp
                 Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
                 UpdateChart();
             }
-           
-           
-            
         }
         public void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -117,11 +114,12 @@ namespace StopwatchApp
             if (Tab2.IsSelected)
             {
                 StatiscticList.Items.Refresh();
-                DateTime selectedDate = (DateTime)calendar.SelectedDate;
                 UpdateChart();
+                DateTime selectedDate = (DateTime)calendar.SelectedDate;
                 DateTextBlock.Text = selectedDate.ToString("d");
-               // DataContext = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
                 DayStat.Text = Tracker.CalculateTotalTimeForDate(selectedDate).ToString(@"hh\:mm\:ss");
+
+               // DataContext = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
                 Console.WriteLine("Tab2.IsSelected");
             }
         }
@@ -194,12 +192,14 @@ namespace StopwatchApp
             Button button = (Button)sender; 
             StopwatchItem stopwatch = (StopwatchItem)button.DataContext;
             stopwatch.Stop();
-            Console.WriteLine("Обновление времени на {0}", stopwatch.ElapsedTime.TotalSeconds);
             Tracker.UpdateTaskTimeForDate(DateTime.Today, stopwatch.Name, stopwatch.ElapsedTime);
+            stopwatch.Reset();
+            //Консольный вывод
+            Console.WriteLine("Обновление времени на {0}", stopwatch.ElapsedTime.TotalSeconds);
             Console.WriteLine($"Статистика за {DateTime.Today.ToString("d")}:");
             foreach (var task in Tracker.GetTasksByDate(DateTime.Today))
                 Console.WriteLine($"{task.Name} {task.Time.ToString(@"hh\:mm\:ss")} "  );
-            stopwatch.Reset();
+           
                 Console.WriteLine(SelectedStopwatch==null?"null":SelectedStopwatch.Name);
         }
         //При тике таймера
