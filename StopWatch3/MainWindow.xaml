@@ -84,7 +84,7 @@
                     <TextBlock Text="23.05.2023" FontSize="16" Margin="0,5,0,0" FontWeight="Bold" DockPanel.Dock="Left" x:Name="DateTextBlock"/>
                     <TextBlock Text="{Binding ElapsedTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" HorizontalAlignment="Right" DockPanel.Dock="Right" FontWeight="Bold" FontSize="16" Margin="0,5,0,0" x:Name="DayStat" RenderTransformOrigin="-1.269,0.4" />
                 </DockPanel>
-                <TextBlock Text="Statistics" FontWeight="Bold" FontSize="16" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="21" Width="66"/>
+                <TextBlock Text="Статистика" FontWeight="Bold" FontSize="16" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="21" Width="66"/>
                 <ListBox x:Name="StatiscticList" Grid.Row="4">
                     <ListBox.ItemTemplate >
                         <DataTemplate>
