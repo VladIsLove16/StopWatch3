@@ -18,4 +18,10 @@
     <IsItemSelected>false</IsItemSelected>
     <ElapsedTime />
   </StopwatchItem>
+  <StopwatchItem>
+    <IsActive>false</IsActive>
+    <Name>hhhhhhhhhh</Name>
+    <IsItemSelected>false</IsItemSelected>
+    <ElapsedTime />
+  </StopwatchItem>
 </ArrayOfStopwatchItem>

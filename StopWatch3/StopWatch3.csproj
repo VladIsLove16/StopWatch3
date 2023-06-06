@@ -123,9 +123,16 @@
     <Resource Include="icon-int\pause.png" />
     <Resource Include="icon-int\pbm-Pause.png" />
     <Resource Include="icon-int\play.png" />
-    <Resource Include="icon-int\play2.png" />
-    <Resource Include="icon-int\pmb-Play.png" />
     <Resource Include="icon-int\time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon-int\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon-int\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon-int\trash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

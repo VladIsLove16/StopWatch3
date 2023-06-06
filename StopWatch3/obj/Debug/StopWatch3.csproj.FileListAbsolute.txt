@@ -58,3 +58,34 @@ C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\StopWatch3.pdb
 C:\Users\Ksumice\Documents\GitHub\StopWatch3\StopWatch3\obj\Debug\App.baml
 D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\App.baml
 D:\for university\TPP\StopWatch3\StopWatch3\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\StopWatch3.exe.config
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\StopWatch3.exe
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\StopWatch3.pdb
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\ControlzEx.dll
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.dll
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\ControlzEx.pdb
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\ControlzEx.xml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.pdb
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.xml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.csproj.AssemblyReference.cache
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.csproj.SuggestedBindingRedirects.cache
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\MainWindow.g.cs
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\App.g.cs
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3_MarkupCompile.cache
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3_MarkupCompile.lref
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\App.baml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\MainWindow.baml
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.g.resources
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.Properties.Resources.resources
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.csproj.GenerateResource.cache
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.csproj.CoreCompileInputs.cache
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.csproj.CopyComplete
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.exe
+C:\Users\lomsm\OneDrive\Рабочий стол\Ксюша\ТПП\SW 4.2.0\StopWatch3\obj\Debug\StopWatch3.pdb

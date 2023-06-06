@@ -302,6 +302,11 @@ namespace StopwatchApp
             Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);
             TaskList.Clear();
         }
+
+        private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 
 }
