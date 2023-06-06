@@ -83,5 +83,12 @@
         <Time>00:00:02.8702480</Time>
       </Tasks>
     </DailyTasks>
+    <DailyTasks>
+      <Date>2023-06-06T00:00:00+03:00</Date>
+      <Tasks>
+        <Name>Second</Name>
+        <Time>00:00:00.3602796</Time>
+      </Tasks>
+    </DailyTasks>
   </TasksByDate>
 </TaskTracker>
