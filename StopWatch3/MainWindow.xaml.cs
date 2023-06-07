@@ -84,19 +84,24 @@ namespace StopwatchApp
         {
             Console.WriteLine("Дата изменена");
             SelectedDatesCollection dates = calendar.SelectedDates;
-            DateTextBlock.Text=dates[0].ToString("d");
+            
+           
             if (dates.Count > 1)
             {
+                List<DateTime> DateList = dates.ToList();
+                DateList = DateList.OrderBy(p => p.Date).ToList();
+                DateTextBlock.Text = dates[0].ToString("d");
                 DateTextBlock.Text += "-";
                 DateTextBlock.Text += dates[dates.Count - 1].ToString("d");
-                List < DateTime >DateList= dates.ToList();
+
                 List<Task> tasks = Tracker.GetTasksByDates(DateList);
-                DayStat.Text = Tracker.CalculateTotalTimeForTasks(tasks).ToString();
+                DayStat.Text = Tracker.CalculateTotalTimeForTasks(tasks).ToString(@"hh\:mm\:ss");
                 StatiscticList.ItemsSource = tasks;
                 Console.WriteLine(tasks.Count) ;
                 UpdateChart(tasks);
             }
-            else { 
+            else {
+                DateTextBlock.Text = dates[0].ToString("d");
                 DayStat.Text=Tracker.CalculateTotalTimeForDate((DateTime)calendar.SelectedDate).ToString(@"hh\:mm\:ss");
                 StatiscticList.ItemsSource = Tracker.GetTasksByDate((DateTime)calendar.SelectedDate);
                 Console.WriteLine(Tracker.GetTasksByDate((DateTime)calendar.SelectedDate).Count);

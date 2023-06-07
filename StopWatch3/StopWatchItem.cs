@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+
 namespace StopWatchItem
 {
     [Serializable]
@@ -35,7 +37,7 @@ namespace StopWatchItem
                 //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
             }
         }
-        
+        [XmlIgnore]
         public bool IsItemSelected
         {
             get { return isItemSelected; }

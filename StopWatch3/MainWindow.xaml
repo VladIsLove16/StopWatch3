@@ -98,7 +98,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Grid.Column="0" Margin="4,4,0,0"></TextBlock>
-                                <TextBlock Text="{Binding TimeString}" FontSize="16" HorizontalAlignment="Right" Grid.Column="1" Margin="8,4,0,0"></TextBlock>
+                                <TextBlock Text="{Binding Time, StringFormat='{}{0:hh\\:mm\\:ss}'}" FontSize="16" HorizontalAlignment="Right" Grid.Column="1" Margin="8,4,0,0"></TextBlock>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
