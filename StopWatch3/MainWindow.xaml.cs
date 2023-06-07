@@ -307,6 +307,13 @@ namespace StopwatchApp
         {
 
         }
+
+        private void CalButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (calendar.Visibility == Visibility.Visible)
+            { calendar.Visibility = Visibility.Hidden; }
+            else { calendar.Visibility = Visibility.Visible; }
+        }
     }
 
 }
